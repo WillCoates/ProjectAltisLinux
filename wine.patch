@@ -1,0 +1,47 @@
+diff -Naur ./wine/dlls/user32/altispatch.c ./wine-patched/dlls/user32/altispatch.c
+--- ./wine/dlls/user32/altispatch.c	1970-01-01 01:00:00.000000000 +0100
++++ ./wine-patched/dlls/user32/altispatch.c	2017-08-10 00:11:16.782149384 +0100
+@@ -0,0 +1,19 @@
++#include "config.h"
++#include <stdarg.h>
++#include "windef.h"
++#include "winbase.h"
++
++typedef LPARAM HTOUCHINPUT;
++typedef void* PTOUCHINPUT;
++
++// These methods are dummies, and should hopefully return an error
++
++BOOL WINAPI CloseTouchInputHandle(HTOUCHINPUT hTouchInput)
++{
++	  return 0;
++}
++
++BOOL WINAPI GetTouchInputInfo(HTOUCHINPUT hTouchInput, UINT cInputs, PTOUCHINPUT pInputs, int cbSize)
++{
++	  return 0;
++}
+diff -Naur ./wine/dlls/user32/Makefile.in ./wine-patched/dlls/user32/Makefile.in
+--- ./wine/dlls/user32/Makefile.in	2017-08-10 14:06:15.588714900 +0100
++++ ./wine-patched/dlls/user32/Makefile.in	2017-08-09 23:43:31.283485644 +0100
+@@ -48,7 +48,8 @@
+ 	winpos.c \
+ 	winproc.c \
+ 	winstation.c \
+-	wsprintf.c
++	wsprintf.c \
++	altispatch.c
+ 
+ RC_SRCS = user32.rc
+ 
+diff -Naur ./wine/dlls/user32/user32.spec ./wine-patched/dlls/user32/user32.spec
+--- ./wine/dlls/user32/user32.spec	2017-08-10 14:06:15.640713790 +0100
++++ ./wine-patched/dlls/user32/user32.spec	2017-08-09 23:56:20.184260109 +0100
+@@ -804,3 +804,7 @@
+ #
+ @ cdecl __wine_send_input(long ptr)
+ @ cdecl __wine_set_pixel_format(long long)
++
++# Methods required for Altis
++@ stdcall CloseTouchInputHandle(long)
++@ stdcall GetTouchInputInfo(long long ptr long)
