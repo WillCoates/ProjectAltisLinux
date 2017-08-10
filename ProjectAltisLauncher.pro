@@ -12,12 +12,14 @@ RC_ICONS = altis.ico
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    updateworker.cpp
+    updateworker.cpp \
+    authenticationworker.cpp
 
 HEADERS += \
         mainwindow.h \
     systemtype.h \
-    updateworker.h
+    updateworker.h \
+    authenticationworker.h
 
 FORMS += \
         mainwindow.ui
