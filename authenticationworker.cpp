@@ -37,6 +37,8 @@ void AuthenticationWorker::serverReplied()
     {
         emit result(false, "Failed to connect to auth server.", "Oopsy daisy!");
     }
+    delete reply;
+    delete nam;
     emit finished();
 }
 
