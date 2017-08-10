@@ -9,6 +9,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 RC_ICONS = altis.ico
 
+CONFIG += c++11
+
 SOURCES += \
         main.cpp \
         mainwindow.cpp \

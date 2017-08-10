@@ -24,3 +24,7 @@ gcc-multilib must also be installed on 64-bit systems
 Due to how the launcher currently works, wine has to be installed in a
 directory named wine along side the launcher, as well as the contents of the
 pythonpath directory.
+
+## Building
+
+To build, just run qmake and then make in a terminal.
